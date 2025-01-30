@@ -1,0 +1,20 @@
+name: wfci-staging
+on:
+  pull_request: 
+    branches: 
+      - develop
+jobs:
+  ci-development-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repositry
+        uses: actions/checkout@v4
+        with: 
+          ref: ${{github.ref}}
+      - name: Lint HTML and CSS
+        run: |
+          npx htmlhint "**/*.html"  
+          npx stylelint "**/*.css"
+      - name: Test build in staging
+        run: |
+           npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./" 
