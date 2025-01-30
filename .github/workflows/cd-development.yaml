@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Development Artifact
-        uses: actions/deploypages@v4
+        uses: actions/deploy-pages@v4
         with:
           artifact_name: "build artifact-development" 
           token: ${{github.token}}    
